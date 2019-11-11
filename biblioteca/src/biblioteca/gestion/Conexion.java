@@ -6,56 +6,33 @@ import java.sql.SQLException;
 
 public class Conexion {
 
-	private String username;
-	private String password;
-	private String url;
-	private Connection conexion = null;
+	private static final String CONTROLADOR = "com.mysql.jdbc.Driver";
+	private static final String URL = "jdbc:mysql://localhost:3306/biblioteca";
+	private static final String USUARIO = "root";
+	private static final String CLAVE = "";
 	
-	public String getUsername() {
-		return username;
-	}
-	public void setUsername(String username) {
-		this.username = username;
-	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	public String getUrl() {
-		return url;
-	}
-	public void setUrl(String url) {
-		this.url = url;
-	}
-	public Connection getConexion() {
-		return conexion;
-	}
-	public void setConexion(Connection conexion) {
-		this.conexion = conexion;
-	}
-	
-	public void Conectar() {
-		
-		try {			
-			this.setConexion(DriverManager.getConnection(this.getUrl(), this.getUsername(), this.getPassword()));
-		} catch (SQLException e) {
-			e.printStackTrace();	
-		}
-		
-	}
-	
-	public void CerrarConexion() {
-
+	static {
 		try {
-			if (this.getConexion() != null && !this.getConexion().isClosed()) {
-				this.getConexion().close();
-			}
-		} catch (SQLException e) {
+			Class.forName(CONTROLADOR);
+		} catch (ClassNotFoundException e) {
+			System.out.println("Error al cargar el controlador");
 			e.printStackTrace();
 		}
-		
 	}
-	
+
+	public Connection conectar() {
+		Connection conexion = null;
+
+		try {
+			conexion = DriverManager.getConnection(URL, USUARIO, CLAVE);
+			System.out.println("Conexión OK");
+
+		} catch (SQLException e) {
+			System.out.println("Error en la conexión");
+			e.printStackTrace();
+		}
+
+		return conexion;
+	}
+
 }

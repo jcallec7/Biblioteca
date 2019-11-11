@@ -1,12 +1,12 @@
 package biblioteca.vista;
 
 import biblioteca.gestion.Conexion;
-import biblioteca.controlador.Operacion;
+//import biblioteca.controlador.Operacion;
 import biblioteca.vista.VentanaPrincipal;
 import biblioteca.controlador.*;
 
 public class Main {
-	
+
 	public static void main(String[] args) {
 
 		Operacion con = new Operacion();
@@ -28,8 +28,11 @@ public class Main {
 
 		Conexion co = new Conexion();
 
+		co.conectar();
 		System.out.println("La base se ha conectado exitosamente"); VentanaPrincipal
 		vp = new VentanaPrincipal(con, co); vp.setVisible(true);
+		//System.out.println("La base se ha conectado exitosamente"); VentanaPrincipal
+		//vp = new VentanaPrincipal(con, co); vp.setVisible(true);
 		
 	}
 

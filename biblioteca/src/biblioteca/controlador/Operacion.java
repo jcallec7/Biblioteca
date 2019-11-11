@@ -1,3 +1,4 @@
+
 package biblioteca.controlador;
 
 import java.sql.PreparedStatement;
@@ -25,7 +26,7 @@ public class Operacion {
   
     	Libros lb =  new Libros();
     	try {
-			sentencia = con.getConexion().prepareStatement("SELECT bib_lib_id, bib_lib_nombre, bib_lib_autor, bib_lib_editorial, bib_lib_copias FROM biblioteca.bib_libro WHERE bib_lib_id = ? ");
+			sentencia = con.conectar().prepareStatement("SELECT bib_lib_id, bib_lib_nombre, bib_lib_autor, bib_lib_editorial, bib_lib_copias FROM biblioteca.bib_libro WHERE bib_lib_id = ? ");
 			sentencia.setString(1, codigo);
 			resultado = sentencia.executeQuery();
 			while(resultado.next()) {
@@ -47,7 +48,7 @@ public class Operacion {
    
     public void insertarLibros(Conexion con, int codigo, String nombre, String autor, String editorial, int copias ) {
     	try {
-    		sentencia = con.getConexion().prepareStatement("INSERT INTO bib_libro(bib_lib_id, bib_lib_nombre, bib_lib_autor, bib_lib_editorial, bib_lib_copias) VALUES(?,?,?,?,?)");
+    		sentencia = con.conectar().prepareStatement("INSERT INTO bib_libro(bib_lib_id, bib_lib_nombre, bib_lib_autor, bib_lib_editorial, bib_lib_copias) VALUES(?,?,?,?,?)");
     		sentencia.setInt(1, codigo);
     		sentencia.setString(2, nombre);
     		sentencia.setString(3, autor);
@@ -64,7 +65,7 @@ public class Operacion {
     
     public void borrarLibros(Conexion con, String codigo) {
     	try {
-    		sentencia = con.getConexion().prepareStatement("DELETE FROM bib_libro WHERE bib_lib_id = ? ");
+    		sentencia = con.conectar().prepareStatement("DELETE FROM bib_libro WHERE bib_lib_id = ? ");
     		
     		sentencia.setString(1, codigo);
     		sentencia.executeUpdate();
@@ -88,3 +89,4 @@ public class Operacion {
 	
 
 }
+
