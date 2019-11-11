@@ -20,9 +20,9 @@ import biblioteca.controlador.Operacion;
 
 public class VistaBorrar extends JInternalFrame implements ActionListener {
 
-	private JTextField txtJobs;
-	private JLabel codigoJobs;
-	private JButton borrarJobs;
+	private JTextField txtLibro;
+	private JLabel codigoLibro;
+	private JButton borrarLibro;
 	private Operacion con;
 	private Conexion co;
 	
@@ -43,9 +43,9 @@ public class VistaBorrar extends JInternalFrame implements ActionListener {
 			
 			
 			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			txtJobs= new JTextField(10);
-			codigoJobs = new JLabel(" Codigo Jobs ");
-			borrarJobs = new JButton(" Borrar"	);
+			txtLibro= new JTextField(10);
+			codigoLibro = new JLabel(" Codigo Libro ");
+			borrarLibro = new JButton(" Borrar"	);
 			
 			 JPanel pan = new JPanel();
 
@@ -56,21 +56,21 @@ public class VistaBorrar extends JInternalFrame implements ActionListener {
 				GridBagConstraints cp2 = new GridBagConstraints();
 				cp2.gridx = 0;
 				cp2.gridy = 0;
-				pan.add(codigoJobs, cp2);
+				pan.add(codigoLibro, cp2);
 				cp2 = new GridBagConstraints();
 				cp2.gridx = 2;
 				cp2.gridy = 0;
-				pan.add(txtJobs, cp2);
+				pan.add(txtLibro, cp2);
 
 				cp2 = new GridBagConstraints();
 				cp2.gridx = 3;
 				cp2.gridy = 0;
-				pan.add(borrarJobs, cp2);
+				pan.add(borrarLibro, cp2);
 				
 				cp1.add(pan, BorderLayout.NORTH);
 				
-				borrarJobs.addActionListener(this);
-				borrarJobs.setActionCommand("borrarJobs");
+				borrarLibro.addActionListener(this);
+				borrarLibro.setActionCommand("borrarLibro");
 				
 	}
 	@Override
@@ -78,7 +78,7 @@ public class VistaBorrar extends JInternalFrame implements ActionListener {
 		// TODO Auto-generated method stub
 		String comando= evt.getActionCommand();
 		switch(comando){
-		case "borrarJobs":
+		case "borrarLibro":
 			borrarJobs();
 			break;
 		}
@@ -86,9 +86,9 @@ public class VistaBorrar extends JInternalFrame implements ActionListener {
 	}
 	private void borrarJobs() {
 		// TODO Auto-generated method stub
-		con.borrarLibros(co, txtJobs.getText());
+		con.borrarLibros(co, txtLibro.getText());
 		JOptionPane.showMessageDialog(this, " Borrado Corectamente ");
-		txtJobs.setText("");
+		txtLibro.setText("");
 		
 	}
 }

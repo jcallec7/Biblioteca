@@ -20,9 +20,9 @@ import biblioteca.vista.VistaLibros;
 
 public class VistaConsultar  extends JInternalFrame  implements ActionListener{
 
-	private JTextField txtjob;
-	private JLabel codigoJob;
-	private JButton consultarJob;
+	private JTextField txtLibro;
+	private JLabel codigoLibro;
+	private JButton consultarLibro;
 	private Operacion con;
 	private Conexion co;
 	
@@ -41,9 +41,9 @@ public class VistaConsultar  extends JInternalFrame  implements ActionListener{
 		initComponents();
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		txtjob= new JTextField(10);
-		codigoJob = new JLabel(" Codigo Jobs ");
-		consultarJob = new JButton(" Consultar"	);
+		txtLibro= new JTextField(10);
+		codigoLibro = new JLabel(" Codigo Libro ");
+		consultarLibro = new JButton(" Consultar"	);
 		
 		 JPanel pan = new JPanel();
 
@@ -54,21 +54,21 @@ public class VistaConsultar  extends JInternalFrame  implements ActionListener{
 			GridBagConstraints cp2 = new GridBagConstraints();
 			cp2.gridx = 0;
 			cp2.gridy = 0;
-			pan.add(codigoJob, cp2);
+			pan.add(codigoLibro, cp2);
 			cp2 = new GridBagConstraints();
 			cp2.gridx = 2;
 			cp2.gridy = 0;
-			pan.add(txtjob, cp2);
+			pan.add(txtLibro, cp2);
 
 			cp2 = new GridBagConstraints();
 			cp2.gridx = 3;
 			cp2.gridy = 0;
-			pan.add(consultarJob, cp2);
+			pan.add(consultarLibro, cp2);
 			
 			cp1.add(pan, BorderLayout.NORTH);
 			
-			consultarJob.addActionListener(this);
-			consultarJob.setActionCommand("consulta");
+			consultarLibro.addActionListener(this);
+			consultarLibro.setActionCommand("consulta");
 		
 	}
 	
@@ -85,7 +85,7 @@ public class VistaConsultar  extends JInternalFrame  implements ActionListener{
 	}
 	
 	public void consultar() {
-		con.ConsultarLibros(co, txtjob.getText());
+		con.ConsultarLibros(co, txtLibro.getText());
 		VistaLibros tr= new VistaLibros(con, co);
 		tr.setVisible(true);
 	}

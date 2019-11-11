@@ -31,7 +31,7 @@ public class VistaInsertar extends JInternalFrame implements ActionListener  {
 	public void initComponents(){
 		
 		setTitle(" INSERTAR ");
-		setSize(900,200);
+		setSize(1000,300);
 		
 	}
 	
@@ -52,8 +52,8 @@ public class VistaInsertar extends JInternalFrame implements ActionListener  {
 		txtbib_lib_editorial = new JTextField(10);
 		lblbib_lib_editorial= new JLabel(" Editorial ");
 		
-		txtbib_lib_editorial = new JTextField(10);
-		lblbib_lib_editorial= new JLabel(" Copias ");
+		txtbib_lib_copias = new JTextField(10);
+		lblbib_lib_copias= new JLabel(" Copias ");
 		
 		insertarLibros = new JButton(" Insertar ");
 		
@@ -93,13 +93,21 @@ public class VistaInsertar extends JInternalFrame implements ActionListener  {
 		pan.add(txtbib_lib_editorial, cp2);
 		cp2.gridx = 8;
 		cp2.gridy = 0;
+		pan.add(lblbib_lib_copias, cp2);
+		cp2 = new GridBagConstraints();
+		cp2.gridx = 9;
+		cp2.gridy = 0;
+		pan.add(txtbib_lib_copias, cp2);
+		cp2.gridx = 10;
+		cp2.gridy = 0;
+		
 		pan.add(insertarLibros, cp2);
 		
-		pan.setBorder(BorderFactory.createTitledBorder(" Insertar Jobs "));
+		pan.setBorder(BorderFactory.createTitledBorder(" Insertar Libros "));
 		cp1.add(pan, BorderLayout.NORTH);
 				
 		insertarLibros.addActionListener(this);
-		insertarLibros.setActionCommand("jobs");
+		insertarLibros.setActionCommand("libros");
 			
 	}
 
@@ -109,7 +117,7 @@ public class VistaInsertar extends JInternalFrame implements ActionListener  {
 		String comando = evt.getActionCommand();
 		
 		switch (comando) {
-		case "jobs":
+		case "libros":
 			insertarLibros();
 			break;
 			
