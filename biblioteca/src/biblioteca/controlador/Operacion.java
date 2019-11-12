@@ -77,6 +77,37 @@ public class Operacion {
     	
     }
     
+    public void modificarLibros(Conexion con, int codigo, String nombre, String autor, String editorial, int copias) {
+    	try {
+    		
+    		sentencia = con.conectar().prepareStatement("UPDATE bib_libro SET (bib_lib_nombre, bib_lib_autor, bib_lib_editorial, bib_lib_copias) VALUES(?,?,?,?) WHERE bib_lib_id = " + codigo);
+    		
+    		//sentencia.setString(1, codigo);
+    		sentencia.executeUpdate();
+    		System.out.println("modificado");
+		} catch (SQLException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+    	
+    }
+    
+    public List<Libros> cargarLibros(Conexion con) {
+    	try {
+    		
+    		sentencia = con.conectar().prepareStatement("Select * From bib_libro");
+    		
+    		//sentencia.setString(1, codigo);
+    		sentencia.executeQuery();
+    		//System.out.println("modificado");
+		} catch (SQLException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return libros;
+    	
+    }
+    
 	public List<Libros> getLibros() {
 		return libros;
 	}

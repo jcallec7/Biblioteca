@@ -23,7 +23,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener  {
 	private JDesktopPane escritorio;
 	private Operacion con;
 	private JMenu archivo;
-	private JMenuItem consultas,insertar,borrar;
+	private JMenuItem consultas,insertar,borrar,modificar;
 	private Conexion co;
 	
 	public  VentanaPrincipal(Operacion con, Conexion co) {
@@ -61,6 +61,11 @@ public class VentanaPrincipal extends JFrame implements ActionListener  {
 		borrar.setActionCommand("borrar");
 		archivo.add(borrar);
 		
+		modificar = new JMenuItem(" Modificar ");
+		modificar.addActionListener(this);
+		modificar.setActionCommand("modificar");
+		archivo.add(modificar);
+		
 		barra.add(archivo);
 		
 		setJMenuBar(barra);
@@ -84,6 +89,9 @@ public class VentanaPrincipal extends JFrame implements ActionListener  {
 			break;
 		case "borrar":
 			borrar();
+			break;
+		case "modificar":
+			modificar();
 			break;
 		default :
 			break;
@@ -134,5 +142,19 @@ public class VentanaPrincipal extends JFrame implements ActionListener  {
 			e.printStackTrace();
 		}
 	}
+	
+	private void modificar() {
+		// TODO Auto-generated method stub
+		VistaModificar md = new VistaModificar(con, co);
+		md.setVisible(true);
+		escritorio.add(md);
+		try {
+			md.setSelected(true);
+		} catch (Exception e) {			
+			e.printStackTrace();
+		}
+	}
+	
+	
 }
 
