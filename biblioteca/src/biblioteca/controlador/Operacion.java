@@ -80,11 +80,15 @@ public class Operacion {
     public void modificarLibros(Conexion con, int codigo, String nombre, String autor, String editorial, int copias) {
     	try {
     		
-    		sentencia = con.conectar().prepareStatement("UPDATE bib_libro SET (bib_lib_nombre, bib_lib_autor, bib_lib_editorial, bib_lib_copias) VALUES(?,?,?,?) WHERE bib_lib_id = " + codigo);
-    		
-    		//sentencia.setString(1, codigo);
+    		sentencia = con.conectar().prepareStatement("UPDATE bib_libro SET bib_lib_nombre =?, bib_lib_autor=?, bib_lib_editorial=?, bib_lib_copias=?" + " WHERE bib_lib_id =?");
+    		sentencia.setString(1, nombre);
+    		sentencia.setString(2, autor);
+    		sentencia.setString(3, editorial);
+    		sentencia.setInt(4, copias);
+    		sentencia.setInt(5, codigo);
     		sentencia.executeUpdate();
     		System.out.println("modificado");
+    		System.out.println(nombre + autor + editorial + copias + codigo);
 		} catch (SQLException e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -93,18 +97,33 @@ public class Operacion {
     }
     
     public List<Libros> cargarLibros(Conexion con) {
+    		
+		//sentencia = con.conectar().prepareStatement("Select * From bib_libro");
+		
+		//Libros lb =  new Libros();
     	try {
-    		
-    		sentencia = con.conectar().prepareStatement("Select * From bib_libro");
-    		
-    		//sentencia.setString(1, codigo);
-    		sentencia.executeQuery();
-    		//System.out.println("modificado");
-		} catch (SQLException e) {
+			sentencia = con.conectar().prepareStatement("Select * From bib_libro");
+			//sentencia.setString(1, codigo);
+			resultado = sentencia.executeQuery();
+			//Libros lb =  new Libros();
+			while(resultado.next()){
+				Libros lb =  new Libros();
+				lb.setBib_lib_id(resultado.getString("bib_lib_id"));
+				lb.setBib_lib_nombre(resultado.getString("bib_lib_nombre"));
+				lb.setBib_lib_autor(resultado.getString("bib_lib_autor"));
+				lb.setBib_lib_editorial(resultado.getString("bib_lib_editorial"));
+				lb.setBib_lib_copias(resultado.getString("bib_lib_copias"));
+				
+				libros.add(lb);
+			   
+			}
+			
+			} catch (SQLException e) {
 			// TODO: handle exception
-			e.printStackTrace();
+				e.printStackTrace();
 		}
-		return libros;
+    		
+    	return this.libros;
     	
     }
     
