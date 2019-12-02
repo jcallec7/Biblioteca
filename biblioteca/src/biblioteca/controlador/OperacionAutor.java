@@ -12,7 +12,19 @@ import biblioteca.modelo.*;
 
 public class OperacionAutor {
 	
+	private List<Autor> autoresConsulta;
 	private List<Autor> autores;
+	private Autor au;
+
+	
+	
+	public List<Autor> getAutores() {
+		return autores;
+	}
+
+	public void setAutores(List<Autor> autores) {
+		this.autores = autores;
+	}
 
 
 	private PreparedStatement sentencia = null;
@@ -22,28 +34,34 @@ public class OperacionAutor {
 		autores = new ArrayList<Autor>();
 	}
 	
-	/*public void ConsultarLibros(Conexion con, String codigo) {
-  
-    	Libros lb =  new Libros();
+	public List<Autor> ConsultarAutor(Conexion con, String nombre) {
+    	
+		autoresConsulta = new ArrayList<Autor>();
+		
     	try {
-			sentencia = con.conectar().prepareStatement("SELECT bib_lib_id, bib_lib_nombre, bib_lib_autor, bib_lib_editorial, bib_lib_copias FROM biblioteca.bib_libro WHERE bib_lib_id = ? ");
-			sentencia.setString(1, codigo);
+			sentencia = con.conectar().prepareStatement("SELECT bib_aut_id, bib_aut_nombre, bib_aut_apellido, bib_aut_genero, bib_aut_fech_nac, bib_aut_nacionalidad FROM biblioteca.bib_autor WHERE bib_aut_nombre LIKE '%"+nombre+"%' ");
+			//sentencia.setString(1, nombre);
 			resultado = sentencia.executeQuery();
 			while(resultado.next()) {
 				
-				lb.setBib_lib_id(resultado.getString("bib_lib_id"));
-				lb.setBib_lib_nombre(resultado.getString("bib_lib_nombre"));
-				lb.setBib_lib_autor(resultado.getString("bib_lib_autor"));
-				lb.setBib_lib_editorial(resultado.getString("bib_lib_editorial"));
-				lb.setBib_lib_copias(resultado.getString("bib_lib_copias"));
+				int id = Integer.parseInt(resultado.getString("bib_aut_id"));
+				String nom = resultado.getString("bib_aut_nombre");
+				String ape = resultado.getString("bib_aut_apellido");
+				String gen = resultado.getString("bib_aut_genero");
+				String an = resultado.getString("bib_aut_fech_nac");
+				String nacionalidad = resultado.getString("bib_aut_nacionalidad");
 				
-				libros.add(lb);
+				au = new Autor(id, nom, ape, gen, an);
+				au.setNacionalidad(nacionalidad);
+				
+				autoresConsulta.add(au);
 			}
-			} catch (SQLException e) {
+		} catch (SQLException e) {
 			// TODO: handle exception
 				e.printStackTrace();
 		}
-    }*/
+    	return autoresConsulta;
+    }
     
    
     public void insertarAutor(Conexion con, String nombre, String apellido, String genero, int anio, String nacionalidad) {
@@ -64,69 +82,69 @@ public class OperacionAutor {
     	
     }
     
-    /*public void borrarLibros(Conexion con, String codigo) {
+    public void eliminarAutor(Conexion con, int codigo) {
     	try {
-    		sentencia = con.conectar().prepareStatement("DELETE FROM bib_libro WHERE bib_lib_id = ? ");
+    		sentencia = con.conectar().prepareStatement("DELETE FROM bib_autor WHERE bib_aut_id = ? ");
     		
-    		sentencia.setString(1, codigo);
+    		sentencia.setInt(1, codigo);
     		sentencia.executeUpdate();
-    		System.out.println("borrado");
+    		//System.out.println("borrado");
 		} catch (SQLException e) {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
     	
-    }*/
+    }
     
-    /*public void modificarLibros(Conexion con, int codigo, String nombre, String autor, String editorial, int copias) {
-    	try {
-    		
-    		sentencia = con.conectar().prepareStatement("UPDATE bib_libro SET bib_lib_nombre =?, bib_lib_autor=?, bib_lib_editorial=?, bib_lib_copias=?" + " WHERE bib_lib_id =?");
+    public void modificarAutor(Conexion con, int codigo, String nombre, String apellido, String genero, int anio, String nacionalidad) {
+    	try {	
+    		sentencia = con.conectar().prepareStatement("UPDATE bib_autor SET bib_aut_nombre =?, bib_aut_apellido=?, bib_aut_genero=?, bib_aut_fech_nac=?, bib_aut_nacionalidad=?" + " WHERE bib_aut_id =?");
     		sentencia.setString(1, nombre);
-    		sentencia.setString(2, autor);
-    		sentencia.setString(3, editorial);
-    		sentencia.setInt(4, copias);
-    		sentencia.setInt(5, codigo);
+    		sentencia.setString(2, apellido);
+    		sentencia.setString(3, genero);
+    		sentencia.setInt(4, anio);
+    		sentencia.setString(5, nacionalidad);
+    		sentencia.setInt(6, codigo);
     		sentencia.executeUpdate();
     		System.out.println("modificado");
-    		System.out.println(nombre + autor + editorial + copias + codigo);
 		} catch (SQLException e) {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
     	
-    }*/
+    }
     
-    /*public List<Libros> cargarLibros(Conexion con) {
+    public List<Autor> cargarAutores(Conexion con) {
     		
 		//sentencia = con.conectar().prepareStatement("Select * From bib_libro");
 		
 		//Libros lb =  new Libros();
     	try {
-			sentencia = con.conectar().prepareStatement("Select * From bib_libro");
-			//sentencia.setString(1, codigo);
+			sentencia = con.conectar().prepareStatement("SELECT * FROM biblioteca.bib_autor");
+			//sentencia.setString(1, nombre);
 			resultado = sentencia.executeQuery();
-			//Libros lb =  new Libros();
-			while(resultado.next()){
-				Libros lb =  new Libros();
-				lb.setBib_lib_id(resultado.getString("bib_lib_id"));
-				lb.setBib_lib_nombre(resultado.getString("bib_lib_nombre"));
-				lb.setBib_lib_autor(resultado.getString("bib_lib_autor"));
-				lb.setBib_lib_editorial(resultado.getString("bib_lib_editorial"));
-				lb.setBib_lib_copias(resultado.getString("bib_lib_copias"));
+			while(resultado.next()) {
 				
-				libros.add(lb);
-			   
+				int id = Integer.parseInt(resultado.getString("bib_aut_id"));
+				String nom = resultado.getString("bib_aut_nombre");
+				String ape = resultado.getString("bib_aut_apellido");
+				String gen = resultado.getString("bib_aut_genero");
+				String an = resultado.getString("bib_aut_fech_nac");
+				String nacionalidad = resultado.getString("bib_aut_nacionalidad");
+				
+				au = new Autor(id, nom, ape, gen, an);
+				au.setNacionalidad(nacionalidad);
+				
+				autores.add(au);
 			}
-			
-			} catch (SQLException e) {
+		} catch (SQLException e) {
 			// TODO: handle exception
 				e.printStackTrace();
 		}
     		
-    	return this.libros;
+    	return this.autores;
     	
-    }*/
+    }
     
 	
 	
