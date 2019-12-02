@@ -49,7 +49,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener  {
 	
 	private void initComponents() {
 		// TODO Auto-generated method stub
-		setSize(1500,500);
+		setSize(1500,700);
 		setTitle("Gestion Base Datos");
 		getContentPane().setLayout(new BorderLayout());
 		escritorio = new JDesktopPane();		
