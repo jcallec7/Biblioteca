@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class Autor extends Persona {
 
-	public Autor(int id, String nombre, String apellido, Boolean genero, Date fechaNac) {
+	public Autor(int id, String nombre, String apellido, String genero, String fechaNac) {
 		super(id, nombre, apellido, genero, fechaNac);
 		// TODO Auto-generated constructor stub
 	}

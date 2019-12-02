@@ -9,6 +9,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
+import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -21,11 +22,14 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 
 import biblioteca.controlador.Operacion;
 import biblioteca.controlador.OperacionAutor;
 import biblioteca.gestion.Conexion;
+import biblioteca.modelo.Autor;
+import biblioteca.modelo.Libros;
 
 public class VistaAutor extends JInternalFrame  implements ActionListener {
 
@@ -53,7 +57,12 @@ public class VistaAutor extends JInternalFrame  implements ActionListener {
 	private JLabel lb_aut_id, lb_aut_nombre3, lb_aut_apellido3, lb_aut_genero3, lb_aut_fechNac3, lb_aut_nacionalidad3;
 	private JTextField txt_aut_nombre3, txt_aut_apellido3, txt_aut_genero3, txt_aut_fechNac3, txt_aut_nacionalidad3;
 	private JComboBox combo_aut_id;
+	private int contadorCombo = 0;
+	private List<Autor> autores;
+	private JTable tblautores;
 	//private JFormattedTextField dateField = new JFormattedTextField(new SimpleDateFormat("dd/MM/yyyy"));
+	
+	
 	
 	public void initComponents() {
 		
@@ -62,6 +71,14 @@ public class VistaAutor extends JInternalFrame  implements ActionListener {
 		
 	}
 	
+	public JComboBox getCombo_aut_id() {
+		return combo_aut_id;
+	}
+
+	public void setCombo_aut_id(JComboBox combo_aut_id) {
+		this.combo_aut_id = combo_aut_id;
+	}
+
 	public VistaAutor(OperacionAutor op, Conexion co) {
 		this.co=co;
 		this.op=op;
@@ -142,7 +159,7 @@ public class VistaAutor extends JInternalFrame  implements ActionListener {
 			break;
 		case "Insertar Autor 2":
 			insertar2();
-			break;/*
+			break;
 		case "Consultar Autor 2":
 			consultar2();
 			break;
@@ -151,7 +168,7 @@ public class VistaAutor extends JInternalFrame  implements ActionListener {
 			break;
 		case "Eliminar Autor 2":
 			eliminar2();
-			break;*/
+			break;
 		default :
 			break;
 		}
@@ -244,6 +261,9 @@ public class VistaAutor extends JInternalFrame  implements ActionListener {
 	
 	private void consultar() {
 		
+		//combo_aut_id = new JComboBox();
+		//combo_aut_id.removeAll();
+		
 		txt_aut_nombre2 = new JTextField(20);
 		
 		
@@ -260,7 +280,7 @@ public class VistaAutor extends JInternalFrame  implements ActionListener {
 		
 		cp3.gridx = 0;
 		cp3.gridy = 2;
-		pan2.add(txt_aut_nombre, cp3);
+		pan2.add(txt_aut_nombre2, cp3);
 		
 		cp3 = new GridBagConstraints();
 		cp3.gridx = 0;
@@ -282,7 +302,13 @@ public class VistaAutor extends JInternalFrame  implements ActionListener {
 	private void modificar() {
 		
 		lb_aut_id = new JLabel(" ID ");
-		combo_aut_id = new JComboBox(/*this.cargaComboId()*/);
+		
+		if(contadorCombo < 1) {
+			combo_aut_id = new JComboBox();
+			combo_aut_id.removeAll();
+			combo_aut_id = new JComboBox(this.cargaComboId());
+			contadorCombo++;
+		}
 		
 		lb_aut_nombre3 = new JLabel(" Nombre ");
 		txt_aut_nombre3 = new JTextField(20);
@@ -316,47 +342,47 @@ public class VistaAutor extends JInternalFrame  implements ActionListener {
 		cp3 = new GridBagConstraints();
 		cp3.gridx = 0;
 		cp3.gridy = 2;
-		pan2.add(lb_aut_nombre, cp3);	
+		pan2.add(lb_aut_nombre3, cp3);	
 		cp3 = new GridBagConstraints();
 		cp3.gridx = 1;
 		cp3.gridy = 2;
-		pan2.add(txt_aut_nombre, cp3);
+		pan2.add(txt_aut_nombre3, cp3);
 		
 		cp3 = new GridBagConstraints();
 		cp3.gridx = 0;
 		cp3.gridy = 3;
-		pan2.add(lb_aut_apellido, cp3);
+		pan2.add(lb_aut_apellido3, cp3);
 		cp3 = new GridBagConstraints();
 		cp3.gridx = 1;
 		cp3.gridy = 3;
-		pan2.add(txt_aut_apellido, cp3);
+		pan2.add(txt_aut_apellido3, cp3);
 		
 		cp3 = new GridBagConstraints();
 		cp3.gridx = 0;
 		cp3.gridy = 4;
-		pan2.add(lb_aut_genero, cp3);
+		pan2.add(lb_aut_genero3, cp3);
 		cp3 = new GridBagConstraints();
 		cp3.gridx = 1;
 		cp3.gridy = 4;
-		pan2.add(txt_aut_genero, cp3);
+		pan2.add(txt_aut_genero3, cp3);
 		
 		cp3 = new GridBagConstraints();
 		cp3.gridx = 0;
 		cp3.gridy = 5;
-		pan2.add(lb_aut_fechNac, cp3);
+		pan2.add(lb_aut_fechNac3, cp3);
 		cp3 = new GridBagConstraints();
 		cp3.gridx = 1;
 		cp3.gridy = 5;
-		pan2.add(txt_aut_fechNac, cp3);
+		pan2.add(txt_aut_fechNac3, cp3);
 		
 		cp3 = new GridBagConstraints();
 		cp3.gridx = 0;
 		cp3.gridy = 6;
-		pan2.add(lb_aut_nacionalidad, cp3);
+		pan2.add(lb_aut_nacionalidad3, cp3);
 		cp3 = new GridBagConstraints();
 		cp3.gridx = 1;
 		cp3.gridy = 6;
-		pan2.add(txt_aut_nacionalidad, cp3);
+		pan2.add(txt_aut_nacionalidad3, cp3);
 		
 		cp3 = new GridBagConstraints();
 		cp3.gridx = 1;
@@ -379,7 +405,13 @@ public class VistaAutor extends JInternalFrame  implements ActionListener {
 	private void eliminar() {
 		
 		lb_aut_id = new JLabel(" ID ");
-		combo_aut_id = new JComboBox(/*this.cargaComboId()*/);
+		
+		if(contadorCombo < 1) {
+			combo_aut_id = new JComboBox();
+			combo_aut_id.removeAll();
+			combo_aut_id = new JComboBox(this.cargaComboId());
+			contadorCombo++;
+		}
 		
 		eliminarAutor2 = new JButton(" Eliminar Autor ");
 		
@@ -417,6 +449,62 @@ public class VistaAutor extends JInternalFrame  implements ActionListener {
 		txt_aut_genero.setText("");
 		txt_aut_fechNac.setText("");
 		txt_aut_nacionalidad.setText("");
+		contadorCombo--;
 	}
+	
+	private void consultar2() {
+		// TODO Auto-generated method stub
+		autores = op.ConsultarAutor(co, txt_aut_nombre2.getText());
+		//txt_aut_nombre2.setText("");
+		pan2.removeAll();
+		//pan2.setLayout(new BoxLayout(pan2, BoxLayout.Y_AXIS));
+		pan2.setLayout( new BorderLayout());
+		
+		//pan2.setSize(200, 100);
+		
+		tblautores = new JTable();
+        tblautores.setModel(new TablaLibros());
+        
+        JScrollPane scrollPaneTabla = new JScrollPane(tblautores);
+        
+        pan2.add(scrollPaneTabla, BorderLayout.CENTER);
+        
+        tblautores.setModel(new TablaAutores(autores));
+        
+        pack();
+		
+	}
+	
+	private void modificar2() {
+		
+		int codigo = Integer.parseInt((String) this.getCombo_aut_id().getSelectedItem());
+		op.modificarAutor(co, codigo, txt_aut_nombre3.getText(), txt_aut_apellido3.getText(), txt_aut_genero3.getText(), Integer.parseInt(txt_aut_fechNac3.getText()), txt_aut_nacionalidad3.getText());
+		JOptionPane.showMessageDialog(this, " Modificado Corectamente ");
+		//txtbib_lib_id.setText("");
+		txt_aut_nombre3.setText("");
+		txt_aut_apellido3.setText("");
+		txt_aut_genero3.setText("");
+		txt_aut_fechNac3.setText("");
+		txt_aut_nacionalidad3.setText("");		
+	}
+	
+	private void eliminar2() {
+		
+		int codigo = Integer.parseInt((String) this.getCombo_aut_id().getSelectedItem());
+		op.eliminarAutor(co, codigo);
+		JOptionPane.showMessageDialog(this, " Eliminado Corectamente ");
+		//txtbib_lib_id.setText("");	
+	}
+	
+	public String[] cargaComboId() {
+		this.op.setAutores(this.op.cargarAutores(co));
+        String[] retorno = new String[this.op.getAutores().size()];
+        int i = 0;
+        for(Autor a: this.op.getAutores()) {
+            retorno[i] = Integer.toString(a.getBib_per_id());
+            i++;
+        }
+        return retorno;
+    }
 	
 }

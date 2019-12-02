@@ -7,10 +7,10 @@ public class Persona {
 	private int bib_per_id;
 	private String bib_per_nombre;
 	private String bib_per_apellido;
-	private Boolean bib_per_genero;
-	private Date bib_per_fechaNac;
-	
-	public Persona (int id, String nombre, String apellido, Boolean genero, Date fechaNac) {
+	private String bib_per_genero;
+	private String bib_per_fechaNac;
+	//StringString
+	public Persona (int id, String nombre, String apellido, String genero, String fechaNac) {
 		
 		this.bib_per_id = id;
 		this.bib_per_nombre = nombre;
@@ -40,16 +40,16 @@ public class Persona {
 	public void setBib_per_apellido(String bib_per_apellido) {
 		this.bib_per_apellido = bib_per_apellido;
 	}
-	public Boolean getBib_per_genero() {
+	public String getBib_per_genero() {
 		return bib_per_genero;
 	}
-	public void setBib_per_genero(Boolean bib_per_genero) {
+	public void setBib_per_genero(String bib_per_genero) {
 		this.bib_per_genero = bib_per_genero;
 	}
-	public Date getBib_per_fechaNac() {
+	public String getBib_per_fechaNac() {
 		return bib_per_fechaNac;
 	}
-	public void setBib_per_fechaNac(Date bib_per_fechaNac) {
+	public void setBib_per_fechaNac(String bib_per_fechaNac) {
 		this.bib_per_fechaNac = bib_per_fechaNac;
 	}
 
