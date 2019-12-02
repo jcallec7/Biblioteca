@@ -36,6 +36,7 @@ public class VistaInsertar extends JInternalFrame implements ActionListener  {
 	}
 	
 	public VistaInsertar(Operacion con, Conexion co) {
+		
 		this.co=co;
 		this.con=con;
 		initComponents();
