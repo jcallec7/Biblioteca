@@ -126,7 +126,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener  {
 		autor.setActionCommand("autor");
 		
 		
-		categoria = new JMenu("categoria");
+		categoria = new JMenu("Categoria");
 		
 		insertarCategoria = new JMenuItem(" Insertar Categoria ");
 		insertarCategoria.addActionListener(this);
