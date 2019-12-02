@@ -9,7 +9,8 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		Operacion con = new Operacion();
+		Operacion op = new Operacion();
+		OperacionCliente opCli = new OperacionCliente(); 
 
 		/*
 		 * Conexion co = new Conexion();
@@ -30,7 +31,7 @@ public class Main {
 
 		co.conectar();
 		System.out.println("La base se ha conectado exitosamente"); VentanaPrincipal
-		vp = new VentanaPrincipal(con, co); vp.setVisible(true);
+		vp = new VentanaPrincipal(op,opCli,co); vp.setVisible(true);
 		//System.out.println("La base se ha conectado exitosamente"); VentanaPrincipal
 		//vp = new VentanaPrincipal(con, co); vp.setVisible(true);
 		
