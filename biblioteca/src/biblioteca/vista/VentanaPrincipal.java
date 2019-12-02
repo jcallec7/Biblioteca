@@ -26,17 +26,19 @@ public class VentanaPrincipal extends JFrame implements ActionListener  {
 	private OperacionCliente opCli;
 	private OperacionPrestamo opPres;
 	private OperacionAutor opAu;
-	private JMenu archivo,cliente,prestamo;
+	private OperacionCategoria opCat;
+	private JMenu archivo,cliente,prestamo,categoria;
 	private JMenuItem consultas,insertar,borrar,modificar,insertarCliente,consultarCliente,borrarCliente,modificarCliente;
-	private JMenuItem insertarPrestamo, devolucionPrestamo, autor;
+	private JMenuItem insertarPrestamo, devolucionPrestamo, autor, insertarCategoria, categorizar;
 	private Conexion con;
 	
-	public  VentanaPrincipal(Operacion op, OperacionCliente opCli, OperacionPrestamo opPres, OperacionAutor opAu, Conexion con) {
+	public  VentanaPrincipal(Operacion op, OperacionCliente opCli, OperacionPrestamo opPres, OperacionAutor opAu, OperacionCategoria opCat, Conexion con) {
 		this.op=op;
 		this.con=con;
 		this.opCli = opCli;
 		this.opPres = opPres;
 		this.opAu = opAu;
+		this.opCat = opCat;
 		initComponents();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
@@ -117,12 +119,28 @@ public class VentanaPrincipal extends JFrame implements ActionListener  {
 		prestamo.add(insertarPrestamo);
 		prestamo.add(devolucionPrestamo);
 		
+		
+		
 		autor = new JMenuItem(" Autor ");
 		autor.addActionListener(this);
 		autor.setActionCommand("autor");
 		
 		
+		categoria = new JMenu("categoria");
+		
+		insertarCategoria = new JMenuItem(" Insertar Categoria ");
+		insertarCategoria.addActionListener(this);
+		insertarCategoria.setActionCommand("categoria");
+		
+		categorizar = new JMenuItem("Categorizar");
+		categorizar.addActionListener(this);
+		categorizar.setActionCommand("categoriza");
+		
+		categoria.add(insertarCategoria);
+		categoria.add(categorizar);
+		
 		barra.add(archivo);
+		barra.add(categoria);
 		barra.add(cliente);
 		barra.add(prestamo);
 		barra.add(autor);
@@ -169,8 +187,15 @@ public class VentanaPrincipal extends JFrame implements ActionListener  {
 			break;
 		case "autor":
 			autor();
-		default :
 			break;
+		case "categoria":
+			insertCategoria();
+			break;
+		case "categoriza":
+			insertCategoriza();
+		break;
+			default :
+		break;
 		}
 		
 		
@@ -296,6 +321,31 @@ public class VentanaPrincipal extends JFrame implements ActionListener  {
 	private void autor() {
 		// TODO Auto-generated method stub
 		VistaAutor in = new VistaAutor(opAu, con);
+		in.setVisible(true);
+		escritorio.add(in);
+		try {
+			in.setSelected(true);
+		} catch (Exception e) {			
+			e.printStackTrace();
+		}
+		
+	}
+	
+	private void insertCategoria() {
+		// TODO Auto-generated method stub
+		VentanaInsertarCategoria in = new VentanaInsertarCategoria(opCat, con);
+		in.setVisible(true);
+		escritorio.add(in);
+		try {
+			in.setSelected(true);
+		} catch (Exception e) {			
+			e.printStackTrace();
+		}
+		
+	}
+	private void insertCategoriza() {
+		// TODO Auto-generated method stub
+		VistaCategorizacion in = new VistaCategorizacion (opCat, con);
 		in.setVisible(true);
 		escritorio.add(in);
 		try {
