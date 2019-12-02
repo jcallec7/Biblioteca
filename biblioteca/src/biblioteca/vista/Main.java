@@ -11,6 +11,8 @@ public class Main {
 
 		Operacion op = new Operacion();
 		OperacionCliente opCli = new OperacionCliente(); 
+		OperacionPrestamo opPres = new OperacionPrestamo(); 
+		OperacionAutor opAu = new OperacionAutor();
 
 		/*
 		 * Conexion co = new Conexion();
@@ -31,7 +33,7 @@ public class Main {
 
 		co.conectar();
 		System.out.println("La base se ha conectado exitosamente"); VentanaPrincipal
-		vp = new VentanaPrincipal(op,opCli,co); vp.setVisible(true);
+		vp = new VentanaPrincipal(op,opCli,opPres, opAu, co); vp.setVisible(true);
 		//System.out.println("La base se ha conectado exitosamente"); VentanaPrincipal
 		//vp = new VentanaPrincipal(con, co); vp.setVisible(true);
 		
