@@ -27,18 +27,20 @@ public class VentanaPrincipal extends JFrame implements ActionListener  {
 	private OperacionPrestamo opPres;
 	private OperacionAutor opAu;
 	private OperacionCategoria opCat;
-	private JMenu archivo,cliente,prestamo,categoria;
+	private OperacionEditorial opEdit;
+	private JMenu archivo,cliente,prestamo,categoria,editorial;
 	private JMenuItem consultas,insertar,borrar,modificar,insertarCliente,consultarCliente,borrarCliente,modificarCliente;
-	private JMenuItem insertarPrestamo, devolucionPrestamo, autor, insertarCategoria, categorizar;
+	private JMenuItem insertarPrestamo, devolucionPrestamo, autor, insertarCategoria, categorizar, insertarEd,borrarEditorial,modificarEd;
 	private Conexion con;
 	
-	public  VentanaPrincipal(Operacion op, OperacionCliente opCli, OperacionPrestamo opPres, OperacionAutor opAu, OperacionCategoria opCat, Conexion con) {
+	public  VentanaPrincipal(Operacion op, OperacionCliente opCli, OperacionPrestamo opPres, OperacionAutor opAu, OperacionCategoria opCat, OperacionEditorial opEdit, Conexion con) {
 		this.op=op;
 		this.con=con;
 		this.opCli = opCli;
 		this.opPres = opPres;
 		this.opAu = opAu;
 		this.opCat = opCat;
+		this.opEdit = opEdit;
 		initComponents();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
@@ -139,9 +141,30 @@ public class VentanaPrincipal extends JFrame implements ActionListener  {
 		categoria.add(insertarCategoria);
 		categoria.add(categorizar);
 		
+		
+		editorial = new JMenu("Editorial");
+		
+		insertarEd = new JMenuItem("Insertar Editorial");
+		insertarEd.addActionListener(this);
+		insertarEd.setActionCommand("editorial");
+		editorial.add(insertarEd);
+		
+		
+		borrarEditorial = new JMenuItem("Borrar Editorial");
+		borrarEditorial.addActionListener(this);
+		borrarEditorial.setActionCommand("beditorial");
+		editorial.add(borrarEditorial);
+		
+	
+		modificarEd = new JMenuItem("Modificar Editorial ");
+		modificarEd.addActionListener(this);
+		modificarEd.setActionCommand("meditorial");
+		editorial.add(modificarEd);
+		
 		barra.add(archivo);
 		barra.add(categoria);
 		barra.add(cliente);
+		barra.add(editorial);
 		barra.add(prestamo);
 		barra.add(autor);
 		
@@ -193,9 +216,18 @@ public class VentanaPrincipal extends JFrame implements ActionListener  {
 			break;
 		case "categoriza":
 			insertCategoriza();
-		break;
+			break;
+		case "editorial":
+			insertarEd();
+			break;
+		case "beditorial":
+			borrarEditorial();
+			break;
+		case "meditorial":
+			modificarEditorial();
+			break;
 			default :
-		break;
+			break;
 		}
 		
 		
@@ -354,6 +386,47 @@ public class VentanaPrincipal extends JFrame implements ActionListener  {
 			e.printStackTrace();
 		}
 		
+	}
+	
+	private void insertarEd() {
+		// TODO Auto-generated method stub
+		VistaInsertarEditorial ine = new VistaInsertarEditorial(opEdit, con);
+		ine.setVisible(true);
+		escritorio.add(ine);
+		
+				
+		try {
+			ine.setSelected(true);
+		} catch (Exception e1) {			
+			e1.printStackTrace();
+		}
+		
+	}
+	
+	
+	
+	private void borrarEditorial() {
+		// TODO Auto-generated method stub
+		VistaBorrarEditorial bre = new VistaBorrarEditorial(opEdit,con);
+		bre.setVisible(true);
+		escritorio.add(bre);
+		try {
+			bre.setSelected(true);
+		} catch (Exception e) {			
+			e.printStackTrace();
+		}
+	}
+	
+	private void modificarEditorial() {
+		// TODO Auto-generated method stub
+		VistaModificarEditorial md = new VistaModificarEditorial(opEdit, con);
+		md.setVisible(true);
+		escritorio.add(md);
+		try {
+			md.setSelected(true);
+		} catch (Exception e) {			
+			e.printStackTrace();
+		}
 	}
 	
 }
