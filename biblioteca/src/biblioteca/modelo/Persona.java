@@ -9,7 +9,7 @@ public class Persona {
 	private String bib_per_apellido;
 	private String bib_per_genero;
 	private String bib_per_fechaNac;
-	
+	//StringString
 	public Persona (int id, String nombre, String apellido, String genero, String fechaNac) {
 		
 		this.bib_per_id = id;
