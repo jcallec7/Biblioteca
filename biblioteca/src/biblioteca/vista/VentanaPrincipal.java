@@ -60,7 +60,6 @@ public class VentanaPrincipal extends JFrame implements ActionListener  {
 		
 		archivo = new JMenu("Libro");
 		
-		
 		consultas = new JMenuItem("Consultar");
 		consultas.addActionListener(this);
 		consultas.setActionCommand("consultar");
