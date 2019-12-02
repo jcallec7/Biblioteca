@@ -66,7 +66,7 @@ public class VentanaInsertarCategoria extends JInternalFrame implements ActionLi
 		pan.add(txtlib_cat_nombre, cp2);
 		
 		cp2.gridx = 4;
-		cp2.gridy = 0;
+		cp2.gridy = 0; 
 		pan.add(lblbib_cat_descr, cp2);
 		cp2 = new GridBagConstraints();
 		cp2.gridx = 5;

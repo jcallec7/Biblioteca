@@ -119,7 +119,7 @@ public class OperacionCategoria {
 	public void setLibros(List<Libros> libros) {
 		this.libros = libros;
 	}
-	
+
 	
 	
     

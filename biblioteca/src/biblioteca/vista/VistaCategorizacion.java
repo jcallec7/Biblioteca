@@ -94,7 +94,7 @@ JPanel pan = new JPanel();
 		pan.add(txtbib_lib_nombre, cp2);
 		cp2.gridx = 10;
 		cp2.gridy = 0;
-		
+
 		
 		pan.add(categoriza, cp2);
 		
