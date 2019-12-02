@@ -56,7 +56,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener  {
 		JMenuBar barra = new JMenuBar();
 		
 		
-		archivo = new JMenu("Archivo");
+		archivo = new JMenu("Libro");
 		
 		
 		consultas = new JMenuItem("Consultar");
