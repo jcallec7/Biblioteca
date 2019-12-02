@@ -37,7 +37,7 @@ public class Categoria
 		this.cat_descr = cat_descr;
 	}
 	
-	
+
 	 
 	 
 }

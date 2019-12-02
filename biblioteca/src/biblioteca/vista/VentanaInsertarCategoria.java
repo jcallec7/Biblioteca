@@ -77,6 +77,7 @@ public class VentanaInsertarCategoria extends JInternalFrame implements ActionLi
 		
 		pan.add(insertarCategoria,cp2);
 		
+		
 		pan.setBorder(BorderFactory.createTitledBorder(" Insertar Categoria "));
 		cp1.add(pan, BorderLayout.NORTH);
 		

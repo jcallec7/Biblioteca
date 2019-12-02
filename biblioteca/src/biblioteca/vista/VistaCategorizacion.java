@@ -95,6 +95,7 @@ JPanel pan = new JPanel();
 		cp2.gridx = 10;
 		cp2.gridy = 0;
 		
+		
 		pan.add(categoriza, cp2);
 		
 		pan.setBorder(BorderFactory.createTitledBorder(" categorizar "));
